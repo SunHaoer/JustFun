@@ -15,16 +15,16 @@ public class Sky extends FlyingObject{
 	}
 
 	@Override
-	public void step() {				// Ìì¿ÕÔÚÒÆ¶¯
+	public void step() {				// å¤©ç©ºåœ¨ç§»åŠ¨
 		ShootJPanel.skyY += speed;
-		if(ShootJPanel.bossExist) {					// bossÀ´ÁË, Í£Ö¹Ç°½ø
+		if(ShootJPanel.bossExist) {					// bossæ¥äº†, åœæ­¢å‰è¿›
 			this.speed = 0;
 		} else {
 			this.speed = 1;
 		}
 		if(ShootJPanel.skyY == 0 && ShootJPanel.skyIndex != 3) {
 			ShootJPanel.skyY = -5400;
-			this.image = ShootJPanel.background[++ShootJPanel.skyIndex];		// ·Éµ½µ×, »»ÕÅÍ¼
+			this.image = ShootJPanel.background[++ShootJPanel.skyIndex];		// é£åˆ°åº•, æ¢å¼ å›¾
 		} else if(ShootJPanel.skyY == 0 && ShootJPanel.skyIndex == 3) {
 			speed = 0;
 		}

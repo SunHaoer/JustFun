@@ -2,9 +2,9 @@ package xin.newshooter;
 
 public class LittlePlane extends FlyingPlane{
 	
-	public LittlePlane() {				// Ğ¡·É»ú
+	public LittlePlane() {				// å°é£æœº
 		super();
-		this.isEnemy = true;			// µĞÈË
+		this.isEnemy = true;			// æ•Œäºº
 		this.isBoss = false;
 		this.speed = 2;
 		this.life = 1;
@@ -16,12 +16,12 @@ public class LittlePlane extends FlyingPlane{
 	}
 
 	@Override
-	public int getScore() {				// »ñµÃ·ÖÊı
+	public int getScore() {				// è·å¾—åˆ†æ•°
 		return 5;
 	}
 
 	@Override
-	public void step() {				// ÒÆ¶¯
+	public void step() {				// ç§»åŠ¨
 		y += speed;
 	}
 

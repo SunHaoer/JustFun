@@ -51,8 +51,8 @@ public abstract class FlyingObject {
 		this.ember = ember;
 	}
 	
-	public abstract boolean outOfBounds(); 			// ¼ì²é·ÉĞĞÎïÊÇ·ñ³ö½ç
+	public abstract boolean outOfBounds(); 			// æ£€æŸ¥é£è¡Œç‰©æ˜¯å¦å‡ºç•Œ
 	
-	public abstract void step();					// ·ÉĞĞÎïÒÆ¶¯
+	public abstract void step();					// é£è¡Œç‰©ç§»åŠ¨
 	
 }

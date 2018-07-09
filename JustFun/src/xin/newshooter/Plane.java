@@ -21,37 +21,37 @@ public class Plane extends FlyingObject {
 		this.y = 400;
 	}
 	
-	public int isDouble() {			// ÊÇ·ñ¼ÓÇ¿»ğÁ¦
+	public int isDouble() {			// æ˜¯å¦åŠ å¼ºç«åŠ›
 		return doubleFire;
 	}
 	
-	public void addDoubleFire() {			// ½øÈë¼ÓÇ¿Ä£Ê½
+	public void addDoubleFire() {			// è¿›å…¥åŠ å¼ºæ¨¡å¼
 		this.doubleFire += 40;
 	}
 	
-	public void setDoubleFire(int doubleFire) {			// ÉèÖÃ»ğÁ¦
+	public void setDoubleFire(int doubleFire) {			// è®¾ç½®ç«åŠ›
 		this.doubleFire = doubleFire;
 	}
 	
-	public int getDoubleFire() {					// »ñÈ¡»ğÁ¦Öµ
+	public int getDoubleFire() {					// è·å–ç«åŠ›å€¼
 		return this.doubleFire;
 	}
 	
-	public void setImage() {						// ¸Ä±ä·É»ú×´Ì¬
+	public void setImage() {						// æ”¹å˜é£æœºçŠ¶æ€
 		if(ShootJPanel.skyIndex < 3) {
 			this.image = ShootJPanel.planeImage[ShootJPanel.skyIndex];
 		}
 	}
 	
-	public Image getImg() {	// »ñµÃÍ¼Æ¬
+	public Image getImg() {	// è·å¾—å›¾ç‰‡
 		return this.image;
 	}
 	
-	public void addLife() {			// ¼ÓÃü
+	public void addLife() {			// åŠ å‘½
 		life++;
 	}
 	
-	public void sublife() {			// ¼õÃü
+	public void sublife() {			// å‡å‘½
 		life--;
 	}
 	
@@ -59,12 +59,12 @@ public class Plane extends FlyingObject {
 		return life;
 	}
 	
-	public void moveTo(int x, int y) {		// ·É»úÒÆ¶¯
+	public void moveTo(int x, int y) {		// é£æœºç§»åŠ¨
 		this.x = x - width / 2;
 		this.y = y - height / 2;
 	}
 	
-	public List<Bullet> shoot() {			// Éä»÷
+	public List<Bullet> shoot() {			// å°„å‡»
 		int xStep = width / 4;
 		int yStep = 20;
 		List<Bullet> bullets = new ArrayList<Bullet>();
@@ -78,7 +78,7 @@ public class Plane extends FlyingObject {
 		return bullets;
 	}
 	
-	public boolean hit(FlyingPlane other) {				// Åö×²
+	public boolean hit(FlyingPlane other) {				// ç¢°æ’
 		int x1 = other.x - this.width / 2;
 		int x2 = other.x + other.width + this.width / 2;
 		int y1 = other.y - this.height / 2;

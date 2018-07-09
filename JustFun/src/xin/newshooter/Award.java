@@ -1,6 +1,6 @@
 package xin.newshooter;
 
-public interface Award {			// ½±Àø½Ó¿Ú
+public interface Award {			// å¥–åŠ±
 	int doubleFIRE = 0;
 	int LIFE = 1;
 	int getType();

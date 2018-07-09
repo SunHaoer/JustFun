@@ -21,66 +21,66 @@ import javax.swing.JPanel;
 
 public class ShootJPanel extends JPanel {
 	
-	private int state = 0;			// ÓÎÏ·×´Ì¬
+	private int state = 0;			// æ¸¸æˆçŠ¶æ€
 	public static final int START = 0;
 	public static final int RUNNING = 1;
 	public static final int PAUSE = 2;
 	public static final int GAME_OVER = 3;
 	
-	public static int skyY;			// Ìì¿ÕÎ»ÖÃ
-	public static int skyIndex;		// ¹Ø¿¨
-	public static boolean bossExist = false;	// boss´æÔÚ
-	private int score  = 0;			// µÃ·Ö
-	private Timer timer;			// ¼ÆÊ±Æ÷
-	private int intervel = 1000 / 100;		// Ê±¼ä¼ä¸ô(ºÁÃë)
+	public static int skyY;			// å¤©ç©ºä½ç½®
+	public static int skyIndex;		// å…³å¡
+	public static boolean bossExist = false;	// bosså­˜åœ¨
+	private int score  = 0;			// å¾—åˆ†
+	private Timer timer;			// è®¡æ—¶å™¨
+	private int intervel = 1000 / 100;		// æ—¶é—´é—´éš”(æ¯«ç§’)
 	
-	public static Image[] background = new Image[4];		// ±³¾°Í¼
-	public static Image start;				// ¿ªÊ¼½çÃæ
-	public static Image pause;				// ÔİÍ£½çÃæ
-	public static Image gameover;			// ÓÎÏ·½áÊø
-	public static Image[] bullet = new Image[5];			// ×Óµ¯Í¼Æ¬
-	public static Image[] littlePlane = new Image[5];		// Ğ¡·É»úÍ¼Æ¬
-	public static Image[] bee = new Image[3];				// ½±ÀøÍ¼Æ¬
-	public static Image[] planeImage = new Image[3];				// Õ½¶·»úÍ¼Æ¬
-	public static Image[] bigPlane = new Image[3];			// ´ó·É»úÍ¼Æ¬
-	public static Image littleEmber;				// Ğ¡·É»ú±¬Õ¨
-	public static Image bigEmber;					// ´ó·É»ú±¬Õ¨
+	public static Image[] background = new Image[4];		// èƒŒæ™¯å›¾
+	public static Image start;				// å¼€å§‹ç•Œé¢
+	public static Image pause;				// æš‚åœç•Œé¢
+	public static Image gameover;			// æ¸¸æˆç»“æŸ
+	public static Image[] bullet = new Image[5];			// å­å¼¹å›¾ç‰‡
+	public static Image[] littlePlane = new Image[5];		// å°é£æœºå›¾ç‰‡
+	public static Image[] bee = new Image[3];				// å¥–åŠ±å›¾ç‰‡
+	public static Image[] planeImage = new Image[3];				// æˆ˜æ–—æœºå›¾ç‰‡
+	public static Image[] bigPlane = new Image[3];			// å¤§é£æœºå›¾ç‰‡
+	public static Image littleEmber;				// å°é£æœºçˆ†ç‚¸
+	public static Image bigEmber;					// å¤§é£æœºçˆ†ç‚¸
 	
-	private Sky sky = new Sky();				// Ìì¿Õ
-	private Plane fighter = new Plane();			// Õ½¶·»ú
+	private Sky sky = new Sky();				// å¤©ç©º
+	private Plane fighter = new Plane();			// æˆ˜æ–—æœº
 	private Boss boss;								// boss
-	private List<Bullet> bullets = new ArrayList<Bullet>();			// ×Óµ¯¼¯ºÏ
-	private List<FlyingPlane> flyings = new ArrayList<FlyingPlane>();		// ·ÉĞĞÎï¼¯ºÏ
-	private List<Ember> embers = new ArrayList<Ember>();			// Ê¬Ìå¼¯ºÏ
+	private List<Bullet> bullets = new ArrayList<Bullet>();			// å­å¼¹é›†åˆ
+	private List<FlyingPlane> flyings = new ArrayList<FlyingPlane>();		// é£è¡Œç‰©é›†åˆ
+	private List<Ember> embers = new ArrayList<Ember>();			// å°¸ä½“é›†åˆ
 	
 
 	
 	static {
 		try {
-			for(int i = 0; i < background.length; i++) {		// ÔØÈë±³¾°Í¼
+			for(int i = 0; i < background.length; i++) {		// è½½å…¥èƒŒæ™¯å›¾
 				background[i] = ImageIO.read(new File("images/newshooter/background/background_" + i + ".png"));
 			}
-			start = ImageIO.read(new File("images/newshooter/GameInterface/start.png"));			// ÓÎÏ·¿ªÊ¼Í¼Æ¬
-			pause = ImageIO.read(new File("images/newshooter/GameInterface/pause.png")); 			// ÓÎÏ·ÔİÍ£Í¼Æ¬
-			gameover = ImageIO.read(new File("images/newshooter/GameInterface/gameover.png"));			// ÓÎÏ·½áÊøÍ¼Æ¬
-			for(int i = 0; i < bullet.length; i++) {						// ÔØÈë×Óµ¯Í¼Æ¬
+			start = ImageIO.read(new File("images/newshooter/GameInterface/start.png"));			// æ¸¸æˆå¼€å§‹å›¾ç‰‡
+			pause = ImageIO.read(new File("images/newshooter/GameInterface/pause.png")); 			// æ¸¸æˆæš‚åœå›¾ç‰‡
+			gameover = ImageIO.read(new File("images/newshooter/GameInterface/gameover.png"));			// æ¸¸æˆç»“æŸå›¾ç‰‡
+			for(int i = 0; i < bullet.length; i++) {						// è½½å…¥å­å¼¹å›¾ç‰‡
 				bullet[i] = ImageIO.read(new File("images/newshooter/bullet/bullet_" + i + ".png"));
 			}
-			for(int i = 0; i < littlePlane.length; i++) {					// ÔØÈëĞ¡·É»úÍ¼Æ¬
+			for(int i = 0; i < littlePlane.length; i++) {					// è½½å…¥å°é£æœºå›¾ç‰‡
 				littlePlane[i] = ImageIO.read(new File("images/newshooter/LittlePlane/plane" + i + ".png"));
 			}
-			for(int i = 0; i < bee.length; i++) {							// ÔØÈë½±ÀøÍ¼Æ¬
+			for(int i = 0; i < bee.length; i++) {							// è½½å…¥å¥–åŠ±å›¾ç‰‡
 				bee[i] = ImageIO.read(new File("images/newshooter/award/award_" + i + ".png"));
 			}
-			for(int i = 0; i < planeImage.length; i++) {							// ÔØÈëÕ½¶·»úÍ¼Æ¬
+			for(int i = 0; i < planeImage.length; i++) {							// è½½å…¥æˆ˜æ–—æœºå›¾ç‰‡
 				planeImage[i] = ImageIO.read(new File("images/newshooter/HeroPlane/plane_" + i + ".gif"));
 				//planeImage[i] =  new ImageIcon("images/HeroPlane/plane_" + i + ".gif");
 			}
-			for(int i = 0; i < bigPlane.length; i++) {						// ÔØÈë´ó·É»úÍ¼Æ¬
+			for(int i = 0; i < bigPlane.length; i++) {						// è½½å…¥å¤§é£æœºå›¾ç‰‡
 				bigPlane[i] = ImageIO.read(new File("images/newshooter/BossPlane/boss_" + i + ".png"));
 			}
-			littleEmber = ImageIO.read(new File("images/newshooter/blast/blast_0.png")); 		// ÔØÈëĞ¡·É»ú±¬Õ¨Í¼Æ¬
-			bigEmber = ImageIO.read(new File("images/newshooter/blast/blast_1.png"));  		// ÔØÈë´ó·É»ú±¬Õ¨Í¼Æ¬
+			littleEmber = ImageIO.read(new File("images/newshooter/blast/blast_0.png")); 		// è½½å…¥å°é£æœºçˆ†ç‚¸å›¾ç‰‡
+			bigEmber = ImageIO.read(new File("images/newshooter/blast/blast_1.png"));  		// è½½å…¥å¤§é£æœºçˆ†ç‚¸å›¾ç‰‡
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,37 +91,37 @@ public class ShootJPanel extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
-		paintSky(g);				// »­Ìì¿Õ
-		paintPlane(g);				// »­Õ½¶·»ú
-		paintBullet(g);				// »­×Óµ¯
-		paintFlyingPlane(g);		// »­·ÉĞĞÎï
-		paintEmber(g);				// »­Ê¬Ìå
-		paintScore(g);				// »­Õ½¼¨
-		paintState(g);				// »­×´Ì¬
+		paintSky(g);				// ç”»å¤©ç©º
+		paintPlane(g);				// ç”»æˆ˜æ–—æœº
+		paintBullet(g);				// ç”»å­å¼¹
+		paintFlyingPlane(g);		// ç”»é£è¡Œç‰©
+		paintEmber(g);				// ç”»å°¸ä½“
+		paintScore(g);				// ç”»æˆ˜ç»©
+		paintState(g);				// ç”»çŠ¶æ€
 	}
 	
-	public void paintSky(Graphics g) {				// »­Ìì¿Õ
+	public void paintSky(Graphics g) {				// ç”»å¤©ç©º
 		g.drawImage(sky.getImage(), 0, skyY, null);
 	}
 	
-	public void paintPlane(Graphics g) {			// »­Õ½¶·»ú
+	public void paintPlane(Graphics g) {			// ç”»æˆ˜æ–—æœº
 		g.drawImage(fighter.getImage(), fighter.getX(), fighter.getY(), null);
 	}
 	
-	public void paintBullet(Graphics g) {			// »­×Óµ¯
+	public void paintBullet(Graphics g) {			// ç”»å­å¼¹
 		for(Bullet bullet : bullets) {
 			if(bullet.isBomb());
 			g.drawImage(bullet.getImage(), bullet.getX(), bullet.getY(), null);
 		}
 	}
 	
-	public void paintFlyingPlane(Graphics g) {		// »­µĞ»ú
+	public void paintFlyingPlane(Graphics g) {		// ç”»æ•Œæœº
 		for(FlyingPlane plane : flyings) {
 			g.drawImage(plane.getImage(), plane.getX(), plane.getY(), null);
 		}
 	}
 	
-	public void paintEmber(Graphics g) {		// »­Ê¬Ìå
+	public void paintEmber(Graphics g) {		// ç”»å°¸ä½“
 		for(int i = 0; i < embers.size(); i++) {
 			Ember ember = embers.get(i);
 			g.drawImage(ember.image, ember.x, ember.y, null);
@@ -129,7 +129,7 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public void paintScore(Graphics g) {		// »­Õ½¼¨
+	public void paintScore(Graphics g) {		// ç”»æˆ˜ç»©
 		int x = 10;
 		int y = 25;
 		Font font = new Font(Font.SANS_SERIF, Font.BOLD, 16 );
@@ -142,9 +142,9 @@ public class ShootJPanel extends JPanel {
 		g.drawString("DOUBLEFIRE" + fighter.getDoubleFire(), x, y);
 	}
 	
-	public void paintState(Graphics g) {		// »­×´Ì¬
+	public void paintState(Graphics g) {		// ç”»çŠ¶æ€
 		switch (state) {
-		case START:						// ÓÎÏ·¿ªÊ¼½çÃæ
+		case START:						// æ¸¸æˆå¼€å§‹ç•Œé¢
 			g.drawImage(start, 0, 0, null);
 			break;
 		case PAUSE:
@@ -158,18 +158,18 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public ShootJPanel() {				// ¹¹Ôì·½·¨
+	public ShootJPanel() {				// æ„é€ æ–¹æ³•
 		action();
 	}
 	
-	public void action() {				// Ö´ĞĞ·½·¨Æô¶¯ÓÎÏ·
+	public void action() {				// æ‰§è¡Œæ–¹æ³•å¯åŠ¨æ¸¸æˆ
 
-		MouseAdapter l = new MouseAdapter() {		// Ìí¼ÓÊó±êÊÂ¼ş
+		MouseAdapter l = new MouseAdapter() {		// æ·»åŠ é¼ æ ‡äº‹ä»¶
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {		// Êó±êµã»÷ÊÂ¼ş
-				if( (state == START) && (e.getModifiers() == InputEvent.BUTTON1_MASK) && (e.getX() >= 130) && (e.getX() <= 265) && (e.getY() >= 390) && (e.getY() <= 435) ) {		// Êó±ê×ó¼ü					
-						state = RUNNING;		// ¿ªÊ¼½çÃæ - ¿ªÊ¼ÓÎÏ·
+			public void mouseClicked(MouseEvent e) {		// é¼ æ ‡ç‚¹å‡»äº‹ä»¶
+				if( (state == START) && (e.getModifiers() == InputEvent.BUTTON1_MASK) && (e.getX() >= 130) && (e.getX() <= 265) && (e.getY() >= 390) && (e.getY() <= 435) ) {		// é¼ æ ‡å·¦é”®					
+						state = RUNNING;		// å¼€å§‹ç•Œé¢ - å¼€å§‹æ¸¸æˆ
 				} else if( (state == GAME_OVER) && (e.getModifiers() == InputEvent.BUTTON1_MASK) && (e.getX() >= 115) && (e.getX() <= 305) && (e.getY() >= 310) && (e.getY() <= 370)) {
 					score = 0;
 					skyIndex = 0;
@@ -179,9 +179,9 @@ public class ShootJPanel extends JPanel {
 					flyings = new ArrayList<FlyingPlane>();
 					bullets = new ArrayList<Bullet>();
 					fighter = new Plane();
-					state = START;				// ÖØĞÂ¿ªÊ¼
+					state = START;				// é‡æ–°å¼€å§‹
 				}
-				if(e.getModifiers() == InputEvent.BUTTON3_MASK) {				// ÓÒ¼üÔİÍ£
+				if(e.getModifiers() == InputEvent.BUTTON3_MASK) {				// å³é”®æš‚åœ
 					switch (state) {
 					case RUNNING:
 						state = PAUSE;
@@ -196,7 +196,7 @@ public class ShootJPanel extends JPanel {
 				}		
 			}
 			
-			public void mouseMoved(MouseEvent e) {			// Êó±êÒÆ¶¯ÊÂ¼ş
+			public void mouseMoved(MouseEvent e) {			// é¼ æ ‡ç§»åŠ¨äº‹ä»¶
 				if(state == RUNNING) {
 					fighter.moveTo(e.getX(), e.getY());
 				}
@@ -206,29 +206,29 @@ public class ShootJPanel extends JPanel {
 		this.addMouseListener(l);
 		this.addMouseMotionListener(l);	
 		
-		timer = new Timer();			// Ö÷Á÷³Ì¿ØÖÆ
+		timer = new Timer();			// ä¸»æµç¨‹æ§åˆ¶
 		timer.schedule(new TimerTask() {
 
 			@Override
 			public void run() {
-				if(state == RUNNING) {		// ÓÎÏ·×´Ì¬Îª½øĞĞÖĞ
-					shootAction();			// Éä»÷
-					bossShootAction();			// bossÉä»÷
-					enterAction();			// ·ÉĞĞÎïÈë³¡
-					stepAction();			// ÒÆ¶¯
-					bangAction();			// ÅĞ¶Ï»÷ÖĞ
-					outOfBoundsAction();		// É¾³ıÔ½½ç·ÉĞĞÎï
-					checkGameOverAction();		// ÅĞ¶ÏÓÎÏ·½áÊø
+				if(state == RUNNING) {		// æ¸¸æˆçŠ¶æ€ä¸ºè¿›è¡Œä¸­
+					shootAction();			// å°„å‡»
+					bossShootAction();			// bosså°„å‡»
+					enterAction();			// é£è¡Œç‰©å…¥åœº
+					stepAction();			// ç§»åŠ¨
+					bangAction();			// åˆ¤æ–­å‡»ä¸­
+					outOfBoundsAction();		// åˆ é™¤è¶Šç•Œé£è¡Œç‰©
+					checkGameOverAction();		// åˆ¤æ–­æ¸¸æˆç»“æŸ
 					
 				}
-				repaint();				// ÖØ»æ
+				repaint();				// é‡ç»˜
 			}
 			
 		}, intervel, intervel);
 	}
 	
 	int shootIndex = 0;
-	public void shootAction() {				// Éä»÷
+	public void shootAction() {				// å°„å‡»
 		shootIndex++;
 		if(shootIndex % (60 / (skyIndex + 2)) == 0) {
 			bullets.addAll(fighter.shoot());
@@ -236,7 +236,7 @@ public class ShootJPanel extends JPanel {
 	}
 	
 	int bossShootIndex = 0;
-	public void bossShootAction() {				// bossÉä»÷
+	public void bossShootAction() {				// bosså°„å‡»
 		if(bossExist) {
 			bossShootIndex++;
 			if(shootIndex % (60 / (skyIndex + 2)) == 0) {
@@ -248,9 +248,9 @@ public class ShootJPanel extends JPanel {
 	
 	int flyingEnteredIndex = 0;
 
-	public void enterAction() { // Éú²ú·ÉĞĞÎï
+	public void enterAction() { // ç”Ÿäº§é£è¡Œç‰©
 		flyingEnteredIndex++;
-		if ((skyIndex == 3) && (flyingEnteredIndex % 5 == 0)) { // µÚÈı¹ØËÀ¶¼²»ÈÃ¹ı
+		if ((skyIndex == 3) && (flyingEnteredIndex % 5 == 0)) { // ç¬¬ä¸‰å…³æ­»éƒ½ä¸è®©è¿‡
 			FlyingPlane plane = nextOne();
 			flyings.add(plane);
 		} else {
@@ -258,7 +258,7 @@ public class ShootJPanel extends JPanel {
 				FlyingPlane plane = nextOne();
 				flyings.add(plane);
 			}
-			if (skyY == -ShootJFrame.HEIGHT && bossExist == false && skyIndex != 3) { // bossÀ´ÁË
+			if (skyY == -ShootJFrame.HEIGHT && bossExist == false && skyIndex != 3) { // bossæ¥äº†
 				bossExist = true;
 				boss = new Boss();
 				flyings.add(boss);
@@ -266,7 +266,7 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public FlyingPlane nextOne() {			// Ëæ»úÉú²ú·ÉĞĞÎï
+	public FlyingPlane nextOne() {			// éšæœºç”Ÿäº§é£è¡Œç‰©
 		Random ran = new Random();
 		int type = ran.nextInt(20);
 		if(type < 1) {
@@ -276,19 +276,19 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public void stepAction() {				// ÒÆ¶¯
-		sky.step(); 				// Ìì¿ÕÔÚÒÆ¶¯
-		fighter.setImage();			// ¸üĞÂÕ½¶·»úÍ¼Æ¬
-		for(Bullet bullet : bullets) {			// ×Óµ¯ÔÚÒÆ¶¯
+	public void stepAction() {				// ç§»åŠ¨
+		sky.step(); 				// å¤©ç©ºåœ¨ç§»åŠ¨
+		fighter.setImage();			// æ›´æ–°æˆ˜æ–—æœºå›¾ç‰‡
+		for(Bullet bullet : bullets) {			// å­å¼¹åœ¨ç§»åŠ¨
 			bullet.step();
 			bullet.setImage();
 		}
-		for(FlyingPlane plane : flyings) {		// ·ÉĞĞÎïÒÆ¶¯
+		for(FlyingPlane plane : flyings) {		// é£è¡Œç‰©ç§»åŠ¨
 			plane.step();
 		}
 	}
 	
-	public void bangAction() {				// ÅĞ¶Ï»÷ÖĞ
+	public void bangAction() {				// åˆ¤æ–­å‡»ä¸­
 		for(Bullet bullet : bullets) {
 			for(FlyingPlane plane : flyings) {
 				if(plane.shootBy(bullet)) {
@@ -300,7 +300,7 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public void outOfBoundsAction() {				// É¾³ıÔ½½ç·ÉĞĞÎï
+	public void outOfBoundsAction() {				// åˆ é™¤è¶Šç•Œé£è¡Œç‰©
 		for(int i = 0; i < bullets.size(); i++) {
 			Bullet bullet = bullets.get(i);
 			if(bullet.outOfBounds() || bullet.isBomb()) {
@@ -315,15 +315,15 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public void checkGameOverAction() {				// ÅĞ¶ÏÓÎÏ·½áÊø
+	public void checkGameOverAction() {				// åˆ¤æ–­æ¸¸æˆç»“æŸ
 		if(isGameOver()) {
 			state = GAME_OVER;
 		}
 	}
 	
-	public boolean isGameOver() {					// ÅĞ¶ÏÅö×²
+	public boolean isGameOver() {					// åˆ¤æ–­ç¢°æ’
 		for(FlyingPlane plane : flyings) {
-			if(fighter.hit(plane) && plane.isEnemy && plane.isExist) {						// µĞÈË
+			if(fighter.hit(plane) && plane.isEnemy && plane.isExist) {						// æ•Œäºº
 				fighter.sublife();
 				fighter.setDoubleFire(0);
 				Ember ember = new Ember(plane.getImage(), plane.getX(), plane.getY());

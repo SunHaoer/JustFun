@@ -2,7 +2,7 @@ package xin.newshooter;
 
 public class Bee extends FlyingPlane implements Award{
 	
-	private int xSpeed = (int)(Math.random() * 3) - 1;			// 随机的方向
+	private int xSpeed = (int)(Math.random() * 3) - 1;			// 妯悜绉诲姩
 	private int ySpeed = 2;
 	
 	public Bee() {

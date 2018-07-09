@@ -33,14 +33,14 @@ public abstract class FlyingPlane extends FlyingObject{
 	
 	public abstract int getType();
 	
-	public boolean shootBy(Bullet bullet) {					// ÅÐ¶ÏÊÇ·ñ»÷ÖÐ
+	public boolean shootBy(Bullet bullet) {					// åˆ¤æ–­æ˜¯å¦å‡»ä¸­
 		if(bullet.isBomb() || !isEnemy) {
 			return false;
 		}
 		int x = bullet.x;
 		int y = bullet.y;
 		boolean shoot = (x > this.x) && (x < this.x + width) && (y > this.y) && (y < this.y + height);
-		if(shoot) {							// ±ê¼Ç×Óµ¯Îª»÷ÖÐ
+		if(shoot) {							// æ ‡è®°å­å¼¹ä¸ºå‡»ä¸­
 			bullet.setBomb(true);
 			life--;
 		}

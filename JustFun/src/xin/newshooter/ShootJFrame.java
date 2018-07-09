@@ -12,29 +12,29 @@ import javax.swing.JFrame;
 
 public class ShootJFrame extends JFrame {
 	
-	public static int WIDTH = 400;		// ´°Ìå¿í¸ß
+	public static int WIDTH = 400;		// çª—ä½“å®½é«˜
 	public static int HEIGHT = 600;
 	
 	public ShootJFrame() {
 		ShootJPanel game = new ShootJPanel();
-		int pw = Toolkit.getDefaultToolkit().getScreenSize().width;			// ÆÁÄ»¿í¶È
-		int ph = Toolkit.getDefaultToolkit().getScreenSize().height;		// ÆÁÄ»¸ß¶È
-		this.setTitle("Shoot It"); 				// ÉèÖÃ±êÌâ
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 				// Ïß³ÌÄ¬ÈÏ¹Ø±Õ
-		this.setBounds( (pw - WIDTH) / 2, (ph - HEIGHT) / 2, WIDTH, HEIGHT);	// °Ñ´°¿Ú·ÅÔÚÆÁÄ»ÖĞ¼ä
-		this.setResizable(false); 				// ½ûÖ¹´°¿Ú×î´ó»¯
-		this.add(game);					// ¼ÓÈëÓÎÏ·»­Ãæ
-		this.setVisible(true); 					// ´°Ìå¿É¼û
-//		this.Music();			// ´Ë´¦ÓĞbug
+		int pw = Toolkit.getDefaultToolkit().getScreenSize().width;			// å±å¹•å®½åº¦
+		int ph = Toolkit.getDefaultToolkit().getScreenSize().height;		// å±å¹•é«˜åº¦
+		this.setTitle("Shoot It"); 				// è®¾ç½®æ ‡é¢˜
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 				// çº¿ç¨‹é»˜è®¤å…³é—­
+		this.setBounds( (pw - WIDTH) / 2, (ph - HEIGHT) / 2, WIDTH, HEIGHT);	// æŠŠçª—å£æ”¾åœ¨å±å¹•ä¸­é—´
+		this.setResizable(false); 				// ç¦æ­¢çª—å£æœ€å¤§åŒ–
+		this.add(game);					// åŠ å…¥æ¸¸æˆç”»é¢
+		this.setVisible(true); 					// çª—ä½“å¯è§
+//		this.Music();			// æ­¤å¤„æœ‰bug
 	}
 	
 	private File file;
 	private URI uri;
 	private URL url;
 	
-	public void Music() {						// Ìí¼Ó±³¾°ÒôÀÖ
+	public void Music() {						// æ·»åŠ èƒŒæ™¯éŸ³ä¹
 		try {
-			file = new File("I:\\Javaspace\\JustFun\\src\\xin\\newshooter\\music4.wav");					// Ö»Ê¶±ğwav
+			file = new File("I:\\Javaspace\\JustFun\\src\\xin\\newshooter\\music4.wav");					// åªè¯†åˆ«wav
 			uri = file.toURI();
 			url = uri.toURL();
 			AudioClip auu;

@@ -4,26 +4,26 @@ import java.util.Scanner;
 
 public class TwoZeroFourEight {
 
-	static final int MAX = 4; // ±ß³¤
+	static final int MAX = 4; // è¾¹é•¿
 	static int table[][] = new int[MAX][MAX]; // table
-	static boolean isBegin = false; // ÅĞ¶ÏÓÎÏ·¿ªÊ¼isBegin
-	static boolean isEnd = true; // ÅĞ¶ÏÓÎÏ·½áÊøisEnd
+	static boolean isBegin = false; // åˆ¤æ–­æ¸¸æˆå¼€å§‹isBegin
+	static boolean isEnd = true; // åˆ¤æ–­æ¸¸æˆç»“æŸisEnd
 	static int score = 0;
 	static char ch;
 
 	void firstPrint() {
-		System.out.println("W±íÊ¾ÉÏÒÆ;");
-		System.out.println("S±íÊ¾ÏÂÒÆ;");
-		System.out.println("A±íÊ¾×óÒÆ;");
-		System.out.println("D±íÊ¾ÓÒÒÆ;");
+		System.out.println("Wè¡¨ç¤ºä¸Šç§»;");
+		System.out.println("Sè¡¨ç¤ºä¸‹ç§»;");
+		System.out.println("Aè¡¨ç¤ºå·¦ç§»;");
+		System.out.println("Dè¡¨ç¤ºå³ç§»;");
 		return;
 	}
 
 	void print() {
 		if (isBegin == false)
-			System.out.println("------ÓÎÏ·¿ªÊ¼----------");
+			System.out.println("------æ¸¸æˆå¼€å§‹----------");
 		else
-			System.out.println("------Çë¼ÌĞø------------");
+			System.out.println("------è¯·ç»§ç»­------------");
 		isBegin = true;
 		for (int i = 0; i < MAX; i++) {
 			for (int j = 0; j < MAX; j++) {
@@ -34,13 +34,13 @@ public class TwoZeroFourEight {
 		System.out.println("------score = " + score + " -----\n");
 	}
 
-	int isZero() {             // ÅĞ¶ÏËæ»úÉú³É2»ò0
+	int isZero() {             // åˆ¤æ–­éšæœºç”Ÿæˆ2æˆ–0
 	    int x = (int)(Math.random() * 10);
 	    if(x % 8 != 0) return 0;
 	    else return 2;
 	}
 
-	void createTable() {      // ³õÊ¼»¯½¨±í
+	void createTable() {      // åˆå§‹åŒ–å»ºè¡¨
 	    for(int i = 0; i < MAX; i++) {
 	        for(int j = 0; j < MAX; j++) {
 	            table[i][j] = isZero();
@@ -50,7 +50,7 @@ public class TwoZeroFourEight {
 	}
 
 	void reCreate() {
-	    if(ch == 'w' || ch == 'W') {                  // Óöµ½0ÉÏÒÆ
+	    if(ch == 'w' || ch == 'W') {                  // é‡åˆ°0ä¸Šç§»
 	        for(int j = 0; j < MAX; j++) {
 	            for(int k = 0; k < 3; k++) {
 	                if(table[0][j] == 0) {
@@ -146,15 +146,15 @@ public class TwoZeroFourEight {
 	    return;
 	}
 
-	void changeW() {                    // ÏòÉÏÒÆ¶¯w
+	void changeW() {                    // å‘ä¸Šç§»åŠ¨w
 	    isEnd = true;
 	    for(int j = 0; j < MAX; j++) {
 	        for(int i = 0; i < MAX - 1; i++) {
-	            if( (table[i][j] == table[i + 1][j]) && (table[i][j] != 0) ) {        // ÏàµÈÏà¼Ó
+	            if( (table[i][j] == table[i + 1][j]) && (table[i][j] != 0) ) {        // ç›¸ç­‰ç›¸åŠ 
 	                isEnd = false;
 	                table[i][j] = table[i][j] + table[i + 1][j];
 	                score += table[i][j];
-	                table[i + 1][j] = 0;                    // Ïà¼ÓÊıÉÏÒÆÎª0
+	                table[i + 1][j] = 0;                    // ç›¸åŠ æ•°ä¸Šç§»ä¸º0
 	                continue;
 	            } else if( (i < MAX - 2) && (table[i][j] == table[i + 2][j]) && (table[i][j] != 0) && (table[i + 1][j] == 0) ) {
 	                isEnd = false;
@@ -171,12 +171,12 @@ public class TwoZeroFourEight {
 	            }
 	        }
 	    }
-	    reCreate();             // ÖØ½¨table
+	    reCreate();             // é‡å»ºtable
 	    print();
 	    return;
 	}
 
-	void changeS() {            // ÏòÏÂÒÆ¶¯
+	void changeS() {            // å‘ä¸‹ç§»åŠ¨
 	    isEnd = true;
 	    for(int j = 0; j < MAX; j++) {
 	        for(int i = MAX - 1; i >= 1; i--) {
@@ -206,7 +206,7 @@ public class TwoZeroFourEight {
 	    return;
 	}
 
-	void changeD() {            // ÏòÓÒÒÆ¶¯
+	void changeD() {            // å‘å³ç§»åŠ¨
 	    isEnd = true;
 	    for(int i = 0; i < MAX; i++) {
 	        for(int j = MAX - 1; j >= 1; j--) {
@@ -236,11 +236,11 @@ public class TwoZeroFourEight {
 	    return;
 	}
 
-	void changeA() {                    // ÏòÉÏÒÆ¶¯w
+	void changeA() {                    // å‘ä¸Šç§»åŠ¨w
 	    isEnd = true;
 	    for(int i = 0; i < MAX; i++) {
 	        for(int j  = 0; j < MAX - 1; j++) {
-	            if( (table[i][j] == table[i][j + 1]) && (table[i][j] != 0) ) {        // ÏàµÈÏà¼Ó
+	            if( (table[i][j] == table[i][j + 1]) && (table[i][j] != 0) ) {        // ç›¸ç­‰ç›¸åŠ 
 	                isEnd = false;
 	                table[i][j] = table[i][j] + table[i][j + 1];
 	                score += table[i][j];
@@ -261,7 +261,7 @@ public class TwoZeroFourEight {
 	            }
 	        }
 	    }
-	    reCreate();             // ÔÙÉú³É2/0
+	    reCreate();             // å†ç”Ÿæˆ2/0
 	    print();
 	    return;
 	}
@@ -275,9 +275,9 @@ public class TwoZeroFourEight {
 		test.print();
 		ch = sca.next().charAt(0);
 		while (true) {
-			if (ch == 'w' || ch == 'W') { // ÏòÉÏÒÆ¶¯
+			if (ch == 'w' || ch == 'W') { // å‘ä¸Šç§»åŠ¨
 				test.changeW();
-			} else if (ch == 's' || ch == 'S') { // ÏòÏÂÒÆ¶¯
+			} else if (ch == 's' || ch == 'S') { // å‘ä¸‹ç§»åŠ¨
 				test.changeS();
 			} else if (ch == 'd' || ch == 'D') {
 				test.changeD();
@@ -289,7 +289,7 @@ public class TwoZeroFourEight {
 		}
 		sca.close();
 		System.out.println("------Game Over-----------");
-		System.out.println("------×îÖÕµÃ·Ö:" + score + "-------");
+		System.out.println("------æœ€ç»ˆå¾—åˆ†:" + score + "-------");
 	}
 
 }

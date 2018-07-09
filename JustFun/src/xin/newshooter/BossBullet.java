@@ -2,7 +2,7 @@ package xin.newshooter;
 
 public class BossBullet extends FlyingPlane implements Award{
 	
-	private int xSpeed = (int)(Math.random() * 3) - 1;			// 随机的方向
+	private int xSpeed = (int)(Math.random() * 3) - 1;			// boss瀛愬脊妯悜閫熷害
 	private int ySpeed = 2;
 	
 	public BossBullet(int x, int y) {
