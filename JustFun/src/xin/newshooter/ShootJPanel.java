@@ -34,23 +34,23 @@ public class ShootJPanel extends JPanel {
 	private Timer timer;			// 计时器
 	private int intervel = 1000 / 100;		// 时间间隔(毫秒)
 	
-	public static Image[] background = new Image[4];		// 背景图
+	public static Image[] background = new Image[4];	// 背景图
 	public static Image start;				// 开始界面
 	public static Image pause;				// 暂停界面
-	public static Image gameover;			// 游戏结束
+	public static Image gameover;				// 游戏结束
 	public static Image[] bullet = new Image[5];			// 子弹图片
 	public static Image[] littlePlane = new Image[5];		// 小飞机图片
-	public static Image[] bee = new Image[3];				// 奖励图片
-	public static Image[] planeImage = new Image[3];				// 战斗机图片
+	public static Image[] bee = new Image[3];			// 奖励图片
+	public static Image[] planeImage = new Image[3];		// 战斗机图片
 	public static Image[] bigPlane = new Image[3];			// 大飞机图片
 	public static Image littleEmber;				// 小飞机爆炸
 	public static Image bigEmber;					// 大飞机爆炸
 	
 	private Sky sky = new Sky();				// 天空
 	private Plane fighter = new Plane();			// 战斗机
-	private Boss boss;								// boss
+	private Boss boss;							// boss
 	private List<Bullet> bullets = new ArrayList<Bullet>();			// 子弹集合
-	private List<FlyingPlane> flyings = new ArrayList<FlyingPlane>();		// 飞行物集合
+	private List<FlyingPlane> flyings = new ArrayList<FlyingPlane>();	// 飞行物集合
 	private List<Ember> embers = new ArrayList<Ember>();			// 尸体集合
 	
 
@@ -91,16 +91,16 @@ public class ShootJPanel extends JPanel {
 	
 	@Override
 	public void paint(Graphics g) {
-		paintSky(g);				// 画天空
-		paintPlane(g);				// 画战斗机
-		paintBullet(g);				// 画子弹
+		paintSky(g);			// 画天空
+		paintPlane(g);			// 画战斗机
+		paintBullet(g);			// 画子弹
 		paintFlyingPlane(g);		// 画飞行物
-		paintEmber(g);				// 画尸体
-		paintScore(g);				// 画战绩
-		paintState(g);				// 画状态
+		paintEmber(g);			// 画尸体
+		paintScore(g);			// 画战绩
+		paintState(g);			// 画状态
 	}
 	
-	public void paintSky(Graphics g) {				// 画天空
+	public void paintSky(Graphics g) {			// 画天空
 		g.drawImage(sky.getImage(), 0, skyY, null);
 	}
 	
@@ -144,7 +144,7 @@ public class ShootJPanel extends JPanel {
 	
 	public void paintState(Graphics g) {		// 画状态
 		switch (state) {
-		case START:						// 游戏开始界面
+		case START:				// 游戏开始界面
 			g.drawImage(start, 0, 0, null);
 			break;
 		case PAUSE:
@@ -181,7 +181,7 @@ public class ShootJPanel extends JPanel {
 					fighter = new Plane();
 					state = START;				// 重新开始
 				}
-				if(e.getModifiers() == InputEvent.BUTTON3_MASK) {				// 右键暂停
+				if(e.getModifiers() == InputEvent.BUTTON3_MASK) {			// 右键暂停
 					switch (state) {
 					case RUNNING:
 						state = PAUSE;
@@ -213,7 +213,7 @@ public class ShootJPanel extends JPanel {
 			public void run() {
 				if(state == RUNNING) {		// 游戏状态为进行中
 					shootAction();			// 射击
-					bossShootAction();			// boss射击
+					bossShootAction();		// boss射击
 					enterAction();			// 飞行物入场
 					stepAction();			// 移动
 					bangAction();			// 判断击中
@@ -276,19 +276,19 @@ public class ShootJPanel extends JPanel {
 		}
 	}
 	
-	public void stepAction() {				// 移动
+	public void stepAction() {			// 移动
 		sky.step(); 				// 天空在移动
 		fighter.setImage();			// 更新战斗机图片
-		for(Bullet bullet : bullets) {			// 子弹在移动
+		for(Bullet bullet : bullets) {		// 子弹在移动
 			bullet.step();
 			bullet.setImage();
 		}
-		for(FlyingPlane plane : flyings) {		// 飞行物移动
+		for(FlyingPlane plane : flyings) {	// 飞行物移动
 			plane.step();
 		}
 	}
 	
-	public void bangAction() {				// 判断击中
+	public void bangAction() {			// 判断击中
 		for(Bullet bullet : bullets) {
 			for(FlyingPlane plane : flyings) {
 				if(plane.shootBy(bullet)) {
@@ -323,7 +323,7 @@ public class ShootJPanel extends JPanel {
 	
 	public boolean isGameOver() {					// 判断碰撞
 		for(FlyingPlane plane : flyings) {
-			if(fighter.hit(plane) && plane.isEnemy && plane.isExist) {						// 敌人
+			if(fighter.hit(plane) && plane.isEnemy && plane.isExist) {			// 敌人
 				fighter.sublife();
 				fighter.setDoubleFire(0);
 				Ember ember = new Ember(plane.getImage(), plane.getX(), plane.getY());
