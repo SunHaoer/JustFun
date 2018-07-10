@@ -37,7 +37,7 @@ public class Plane extends FlyingObject {
 		return this.doubleFire;
 	}
 	
-	public void setImage() {						// 改变飞机状态
+	public void setImage() {					// 改变飞机状态
 		if(ShootJPanel.skyIndex < 3) {
 			this.image = ShootJPanel.planeImage[ShootJPanel.skyIndex];
 		}
