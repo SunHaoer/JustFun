@@ -78,7 +78,7 @@ public class Plane extends FlyingObject {
 		return bullets;
 	}
 	
-	public boolean hit(FlyingPlane other) {				// 碰撞
+	public boolean hit(FlyingPlane other) {			// 碰撞
 		int x1 = other.x - this.width / 2;
 		int x2 = other.x + other.width + this.width / 2;
 		int y1 = other.y - this.height / 2;
