@@ -83,7 +83,7 @@ public class Plane extends FlyingObject {
 		int x2 = other.x + other.width + this.width / 2;
 		int y1 = other.y - this.height / 2;
 		int y2 = other.y + other.height + this.height / 2;
-		boolean flag = (!other.isBoss) &&  (this.x + this.width / 2 > x1) && (this.x + this.width / 2 < x2)
+		boolean flag = (!other.isBoss) && (this.x + this.width / 2 > x1) && (this.x + this.width / 2 < x2)
 					  				   && (this.y + this.height / 2 > y1) && (this.y + this.height / 2 < y2);
 		if(flag) {
 			other.life--;

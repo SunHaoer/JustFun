@@ -2,6 +2,12 @@ package xin.helloworld;
 
 import java.util.Scanner;
 
+/**
+ * 一个叫做2048的小游戏
+ * @author 隼耗
+ *
+ */
+
 public class TwoZeroFourEight {
 
 	static final int MAX = 4; // 边长
