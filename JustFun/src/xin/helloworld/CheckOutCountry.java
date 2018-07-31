@@ -11,7 +11,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.Scanner;
 
-public class Refer {
+public class CheckOutCountry {
 	public static void main(String[] args) {
 		new Thread(new Sender()).start();
 		new Thread(new Receiver()).start();
@@ -84,7 +84,7 @@ class Receiver implements Runnable {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = "";
 			while( (line = br.readLine()) != null) {
-				String strs[] = line.split(" ");
+				String strs[] = line.split("\\\\");
 				table[Integer.parseInt(strs[0])] = strs[1];
 			}
 			br.close();
